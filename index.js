@@ -4,8 +4,10 @@ const app = express()
 //express() 펑션을 이용해서 express앱을 만듦
 const port = 5000
 //포트 설정
+
+const { Todo } = require('./Todos')
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://ha0:1234@ha0.yoxb0.mongodb.net/<dbname>?retryWrites=true&w=majority',
+mongoose.connect(config.mongoURI,
 {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
 })
