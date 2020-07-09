@@ -1,6 +1,9 @@
 angular.module('todo').directive('todoTitle', function(){
     return{
-        template : '<h1>todo List</h1>'
+        template : '<div class="row align-items-center">'+'<h1>todo List</h1>' +
+        '<span class="badge ml-auto mr-3" ng-class="warningLevel()" ng-hide="incompleteCount() == 0">'+
+        '{{incompleteCount()}}'+
+        '</span></div>'
     }
 })
 

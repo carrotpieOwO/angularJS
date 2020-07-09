@@ -10,6 +10,17 @@
         //서비스에서 데이터 받아오기
        $scope.todos = todoStorage.get();
        
+       $scope.incompleteCount = function(){
+           var count = 0
+           angular.forEach($scope.todos, function(todo){
+               if(!todo.completed){count ++}
+           })
+           return count
+       }
+
+       $scope.warningLevel = function(){
+           return $scope.incompleteCount() < 3 ? "badge-success" : "badge-danger"
+       }
         // var date = new Date().toString();
         //  $scope.todos = [
         //      {   
@@ -41,12 +52,12 @@
             //  }
          }
  
-         $scope.add = function(todo){
+         $scope.add = function(newTodoTitle){
              //데이터 조작하는 부분만 service에서 넘겨받기
-             $http.post('http://localhost:5000/add', todo).success(function(){
-                 $scope.todos.push(newTodo)
-             })
-//             todoStorage.add(newTodoTitle);newTodo
+            //  $http.post('http://localhost:5000/add', todo).success(function(){
+            //      $scope.todos.push(newTodoTitle)
+            //  })
+             todoStorage.add(newTodoTitle);
   
 //create new todos
             //  var newTodo = {
