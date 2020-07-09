@@ -1,7 +1,8 @@
   //모듈 안에 컨트롤러 만들기
     //컨트롤러 이름 정하기. 
     //컨트롤러에서 서비스(todoStorage) 주입 : 컨트롤러 역할만 수행해서 가독성을 높이기 위함
-    app.controller('TodoCtrl', function($scope, todoStorage){
+    app
+    .controller('TodoCtrl', function($scope, $http, todoStorage){
         //function 파라미터로 $scope 변수를 넣어주면, 컨트롤러 안에서 $scope을 사용할 수 있다.
         //$scope : 컨트롤러와 html 파일 간의 연결고리 역할을 한다. 
         // $scope.name ='ha0' 하고, html에서 ng-controller='사용할컨트롤러이름'속성 주고, 
@@ -40,10 +41,14 @@
             //  }
          }
  
-         $scope.add = function(newTodoTitle){
+         $scope.add = function(todo){
              //데이터 조작하는 부분만 service에서 넘겨받기
-             todoStorage.add(newTodoTitle);
-             //create new todos
+             $http.post('http://localhost:5000/add', todo).success(function(){
+                 $scope.todos.push(newTodo)
+             })
+//             todoStorage.add(newTodoTitle);newTodo
+  
+//create new todos
             //  var newTodo = {
             //      title: newTodoTitle,
             //      completed: false,
