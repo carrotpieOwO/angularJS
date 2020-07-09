@@ -22,4 +22,4 @@ const Todo = mongoose.model("Todo", todoSchema);
 
 //이 모델을 다른 파일에서도 쓰기위해 모듈화
 
-module.exports = { Todo };
+module.exports = mongoose.model("Todo", todoSchema);
