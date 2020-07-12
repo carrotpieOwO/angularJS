@@ -1,93 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css"/>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
     <script src="./app.js"></script>
     <script src="./directive.js"></script>
     <script src="./controllers.js"></script>
     <script src="./services.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <!--ng-app: 이 선언된 부분부터 앵귤러가 시작된다고 선언해주는 것-->
-    <!-- ng-init: js 변수, 함수 초기화 -->
-    <!-- expression 표현식 사용해서 변수를 화면에 뿌리기{{}}-->
-    <!-- ng-app 에 모듈명 적어서 모듈 적용하기 -->
+  </head>
+  <body>
     <body ng-app="todo" ng-controller="TodoCtrl">
-        <div class="container">
-            <!-- <h1> Todo List </h1> -->
-            <todo-title></todo-title>
-            <todo-form></todo-form>
-            <!--앵귤러에서 form에 name지정하면 컨트롤러의 스코프 변수에 할당이 된다. 해당이름의 변수가 추가되는 것-->
-            <!-- <form name="todoForm" class="mb-4" ng-submit="add(newTodoTitle)">
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model="newTodoTitle" placeholder="새로운 todo를 입력하세요.." minlength="3">
-                    <span class="input-group-append">
-                        <button class="btn btn-warning" type="submit">추가</button>
-                    </span>
-                </div> -->
-            <!--ng-show false 일 때 자식태그 출력 안됨-->      
-            <!-- <div ng-show="todoForm.$dirty && todoForm.$invalid">
-                <div class="alert alert-warning" role="alert">3글자 이상 입력하세요</div>  
+      <div class="container">
+        <div class="card mx-auto list">
+          <div class="card-body">
+            <h4 class="card-title text-center"><todo-title></todo-title></h4>
+            <div class="float-right mb-5">
+              <todo-filters> </todo-filters>
             </div>
-            </form> -->
 
-            <!--todoForm 어떤 형식인지 json형식으로 출력해보기 ($들어간건 앵귤러 썼을 때 기본적으로 들어가는 키워드들..)-->
-           
-
-            <!-- ng-model : 자바스크립트 변수와 바인딩 되서 값을 출력해줌
-            checkbox값이 변경되면 변경된 값을 자바스크립트 변수에 반영해준다
-            그래서 양방향 바인딩이라고함 -->
-            <!-- ng-repeat : 리스트 반복 (for문 처럼 쓸 수 있다) -->
             <ul class="list-unstyled">
-                <!--리스트에 필터줘서 필터내용은 변수로 담아서 아래 버튼에서 변수내용(필터링내용)적어주기-->
-                <li ng-repeat="todo in todos | filter:statusFilter">
-                    <todo-item></todo-item>
-                    <!-- <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" ng-model="todo.completed">
-                            </div>
-                        </div>
-                        <input type="text" class="form-control" ng-model="todo.title">
-                        <span class="input-group-append"> -->
-                            <!-- 버튼 핸들러 : ng-click // 컨트롤러 연결되있으므로 컨트롤러에 정의하면 됨 -->
-                            <!-- <button class="btn btn-sm btn-danger" type="button" ng-click="remove(todo)">삭제!</button>
-                        </span>
-                    </div>
-                    
-                    <date>{{todo.createdAt | date : 'yyyy-MM-dd HH:mm'}}</date> -->
-                    <!-- <input type="text" ng-model="todo.title">
-                    <input type="checkbox" ng-model="todo.completed">
-                    <date>{{todo.createdAt}}</date> -->
-                </li>
-            </ul>      
-            
-            <todo-filters> </todo-filters>
+              <li
+                class="list-item"
+                ng-repeat="todo in todos | filter:statusFilter"
+              >
+                <todo-item></todo-item>
+              </li>
+            </ul>
+            <p class="card-text mt-5"><todo-form></todo-form></p>
+          </div>
         </div>
-
-      
-
-
-        <!-- <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="checkbox" ng-model="todo.completed">
-              </div>
-            </div>
-            <input type="text" class="form-control" ng-model="todo.title">
-          </div> -->
-          
-        <!-- <div ng-repeat="todo in todos">
-            <input type="text" ng-model="todo.title">
-            <input type="checkbox" ng-model="todo.completed">
-            <date>{{todo.createdAt}}</date>
-        </div> -->
+      </div>
     </body>
-    
-</body>
+  </body>
 </html>
