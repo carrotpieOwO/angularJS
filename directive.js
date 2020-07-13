@@ -1,23 +1,28 @@
+angular.module('todo').directive('highlight', function(){
+    return function(scope, element, attrs){
+        if(scope.day == attrs['hightlight']){
+            element.css('color','red')
+        }
+    }
+})
+
 angular.module('todo').directive('todoTitle', function(){
     return{
         template : '<h1>todo List</h1>'
     }
 })
 
+angular.module('todo').directive('todoDate', function(){
+    let today = new Date().toLocaleDateString();
+    return{
+        template : '<h4 class="text-center">'+today+'</h4>'
+    }
+})
+
 angular.module('todo').directive('todoItem', function(){
     return{
         templateUrl: 'todoItem.tpl.html',
-        // template : '<div class="input-group">'
-        // +'<div class="input-group-prepend">'
-        // +'<div class="input-group-text">'
-        // +'<input type="checkbox" ng-model="todo.completed">'
-        // +'</div></div>'
-        // +'<input type="text" class="form-control" ng-model="todo.title">'
-        // +'<span class="input-group-append">'
-        // +'<button class="btn btn-sm btn-danger" type="button" ng-click="remove(todo)">삭제!</button>'
-        // +'</span></div>'
-        // +'<date>{{todo.createdAt | date : "yyyy-MM-dd HH:mm"}}</date>'
-        // +'}})'
+       
     }
 })
 
