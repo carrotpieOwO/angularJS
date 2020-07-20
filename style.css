@@ -89,3 +89,8 @@ input[type="checkbox"]:checked + input[type="text"].strikethrough {
   margin: 0;
   width: 15%;
 }
+
+.scroll {
+ max-height: 600px;
+  overflow-y: auto;
+}

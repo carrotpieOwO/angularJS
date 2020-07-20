@@ -1,81 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://kit.fontawesome.com/a7d50d45b6.js" crossorigin="anonymous"></script>
 
-    <script src="./app.js"></script>
-    <script src="./directive.js"></script>
-    <script src="./controllers.js"></script>
-    <script src="./services.js"></script>
-    <meta charset="UTF-8" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-    <title>Document</title>
-  </head>
-  <body>
-    <body ng-app="todo" ng-controller="TodoCtrl">
-      <div class="container">
-        <todo-title></todo-title>
-        
-          <!--카드시작-->
-      
-          <div class="card list mb-5 mx-auto">   
-            <div class="card-header"><todo-date></todo-date></div>
-                <div class="card-body">
-                    <h4 class="card-title text-center"></h4>
-                    <div class="ml-auto mb-5">
-                        <todo-filters> </todo-filters>
-                    </div>
-                    <ul class="list-unstyled mx-auto">
-                        <li class="list-item" ng-repeat="todo in todos | filter:statusFilter">
-                            <todo-item></todo-item>
-                        </li>
-                    </ul>
-                    <button class="btn btn-warning rounded-circle btn-submit" ng-click="openForm=true">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-                <div class="card-footer"> 
-                  <p class="card-text mt-5" ng-show="openForm">
-                    <todo-form></todo-form>
-                  </p>
-                </div>
-            </div>
-            <!--카드 끝-->
-    
- 
-          <!--프로그레스-->
-          <section class="category-form">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a7d50d45b6.js" crossorigin="anonymous"></script>
 
-            <div class="card list mb-5">   
-              <div class="card-header">Progress</div>
-                  <div class="card-body">
-                    <div class="progress mb-3">
-                      <div class="progress-bar" style="width:70%">70%</div>
-                    </div>
-                    <div class="progress mb-3">
-                      <div class="progress-bar" style="width:70%">70%</div>
-                    </div>
-                    <div class="progress mb-3">
-                      <div class="progress-bar" style="width:70%">70%</div>
-                    </div>
-                  </div>
-              </div>
-          </section>
+  <script src="./app.js"></script>
+  <script src="./directive.js"></script>
+  <script src="./controllers.js"></script>
+  <script src="./services.js"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+
+  <meta charset="UTF-8" />
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <title>Document</title>
+</head>
+
+<body>
+
+  <body ng-app="todo" ng-controller="TodoCtrl">
+    <div class="container">
+      <todo-title></todo-title>
+
+      <!--카드시작-->
+
+      <div class="card list mb-5 mx-auto ">
+        <div class="card-header">
+          <todo-date></todo-date>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title text-center"></h4>
+          <div class="ml-auto mb-5">
+            <todo-filters> </todo-filters>
+          </div>
+          <ul class="list-unstyled mx-auto">
+            <li class="list-item" ng-repeat="todo in todos | filter:statusFilter">
+              <todo-item></todo-item>
+            </li>
+          </ul>
+          <button class="btn btn-warning rounded-circle" ng-click="openForm=!openForm">
+            <i class="fas fa-plus"></i>
+          </button>
 
         </div>
-        <!--container-->
+        <div class="card-footer">
+          <p class="card-text mt-5" ng-show="openForm">
+            <todo-form></todo-form>
+          </p>
+        </div>
+      </div>
 
-      
-       
-        
-    </body>
+      <!--카드 끝-->
+
+
+      <!--프로그레스-->
+      <section class="category-form">
+
+        <div class="card list mb-5">
+          <div class="card-header">Progress</div>
+          <div class="card-body">
+            <div class="progress mb-3">
+              <div class="progress-bar" style="width:70%">70%</div>
+            </div>
+            <div class="progress mb-3">
+              <div class="progress-bar" style="width:70%">70%</div>
+            </div>
+            <div class="progress mb-3">
+              <div class="progress-bar" style="width:70%">70%</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <!--container-->
+
+
+
+
   </body>
+</body>
+
 </html>

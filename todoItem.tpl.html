@@ -1,25 +1,20 @@
 <div class="row justify-content-center">
-<span class="badge badge-warning mr-2 align-items-center text-center">Warning</span>
-<div class="input-group">
+  <span class="badge badge-warning mr-2 align-items-center text-center">{{todo.category}}</span>
+  <div class="input-group">
 
-  <div class="input-group-prepend">
-    <div class="input-group-text">
-      <input type="checkbox" ng-model="todo.completed" ng-click="update()" />
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input type="checkbox" ng-model="todo.completed" ng-click="update()" />
+      </div>
     </div>
+    <!--text필드에서 포커스아웃 시 블러라는 이벤트가 발생함-->
+    <input type="text" class="form-control strikethrough" ng-model="todo.title" ng-blur="update()" />
+    <span class="input-group-append">
+      <!-- 버튼 핸들러 : ng-click // 컨트롤러 연결되있으므로 컨트롤러에 정의하면 됨 -->
+      <button class="btn btn-sm btn-danger" type="button" ng-click="remove(todo)">
+        삭제!
+      </button>
+    </span>
   </div>
-  <!--text필드에서 포커스아웃 시 블러라는 이벤트가 발생함-->
-  <input
-    type="text"
-    class="form-control strikethrough"
-    ng-model="todo.title"
-    ng-blur="update()"
-  />
-  <span class="input-group-append">
-    <!-- 버튼 핸들러 : ng-click // 컨트롤러 연결되있으므로 컨트롤러에 정의하면 됨 -->
-    <button class="btn btn-sm btn-danger" type="button" ng-click="remove(todo)">
-      삭제!
-    </button>
-  </span>
 </div>
-</div>
-<div class="ml-auto">{{todo.createdAt | date : 'yyyy-MM-dd'}} 까지</div>
+<div class="ml-auto">{{todo.closingDate | date : 'yyyy-MM-dd'}} 까지</div>

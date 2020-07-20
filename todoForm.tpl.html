@@ -1,22 +1,35 @@
-<form name="todoForm" class="mt-5" ng-submit="add(newTodoTitle)" >
+<form name="todoForm" class="mt-5" ng-submit="add(newTodoCategory, newTodoTitle, newTodoDate)">
   <div>
-    <div class="dropdown">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-        Dropdown button
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Link 1</a>
-        <a class="dropdown-item" href="#">Link 2</a>
-        <a class="dropdown-item" href="#">Link 3</a>
-      </div>
+
+    <label for="text" class="mr-sm-2">Category:</label>
+    <div class="row">
+      <!-- 
+      <select ng-model="selectValue" ng-options="item.action for item in todos">
+        <option value="">(Pick One)</option>
+    </select> -->
+
+      <select class="form-control col-8" ng-model="newTodoCategory" ng-show="!createCategory">
+        <option value="">기타</option>
+        <option ng-repeat="todo in todos | unique:'category'">{{todo.category}}</option>
+      </select>
+      <input type="text" class="form-control mb-2 mr-sm-2 col-8" ng-model="newTodoCategory" ng-show="createCategory"
+        placeholder="Enter category" />
+      <button type="button" class="btn btn-primary" ng-click="createCategory=!createCategory"
+        ng-show="!createCategory">직접입력</button>
+      <button type="button" class="btn btn-primary" ng-click="createCategory=!createCategory"
+        ng-show="createCategory">선택입력</button>
     </div>
-   
-    <label for="email" class="mr-sm-2">Email address:</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" ng-model="newTodoTitle"  minlength="3" placeholder="Enter category" id="email"/>
-    <label for="email" class="mr-sm-2">Email address:</label>
-    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="Enter email" id="email">
-    <label for="email" class="mr-sm-2">Email address:</label>
-    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="Enter email" id="email">
+
+    <!-- <label for="text" class="mr-sm-2">Category:</label> -->
+
+    <label for="text" class="mr-sm-2">Title:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter title" ng-model="newTodoTitle"
+      minlength="3">
+    <label for="text" class="mr-sm-2">limit:</label>
+    <input type="text" placeholder="{{today | date : 'yyyy-MM-dd'}}" date-picker-directive ng-model="newTodoDate"
+      class="form-control mb-2 mr-sm-2">
+
+
 
   </div>
 
@@ -24,5 +37,9 @@
   <div ng-show="todoForm.$dirty && todoForm.$invalid">
     <div class="alert alert-warning" role="alert">3글자 이상 입력하세요</div>
   </div>
+
+  <button class="btn btn-warning rounded-circle btn-submit" type="submit" ng-disabled="todoForm.$invalid">
+    add
+  </button>
 
 </form>
