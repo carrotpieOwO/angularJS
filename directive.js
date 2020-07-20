@@ -6,16 +6,23 @@ angular.module('todo').directive('highlight', function(){
     }
 })
 
-angular.module('todo').directive('todoTitle', function(){
-    return{
-        template : '<h1>todo List</h1>'
-    }
-})
 
 angular.module('todo').directive('todoDate', function(){
     let today = new Date().toLocaleDateString();
     return{
-        template : '<h4 class="text-center">'+today+'</h4>'
+        template : '<h1 class="text-center">'+today+'</h1>'
+    }
+})
+
+angular.module('todo').directive('todoTitle', function(){
+    return{
+        template : '<h1>Todo List</h1>'
+    }
+})
+
+angular.module('todo').directive('todoCard', function(){
+    return{
+        templateUrl: 'todoCards.tpl.html'
     }
 })
 

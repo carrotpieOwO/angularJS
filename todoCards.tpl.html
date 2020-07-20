@@ -1,0 +1,16 @@
+<div class="card list mb-5">   
+<div class="card-header"><todo-title></todo-title></div>
+    <div class="card-body">
+        <h4 class="card-title text-center"></h4>
+        <div class="float-right mb-5">
+            <todo-filters> </todo-filters>
+        </div>
+        <ul class="list-unstyled">
+            <li class="list-item" ng-repeat="todo in todos | filter:statusFilter">
+                <todo-item></todo-item>
+            </li>
+        </ul>
+        <p class="card-text mt-5"><todo-form></todo-form></p>
+    </div>
+</div>
+        

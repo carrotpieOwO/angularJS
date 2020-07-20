@@ -1,12 +1,23 @@
-<form name="todoForm" class="mt-5" ng-submit="add(newTodoTitle)">
+<form name="todoForm" class="mt-5" ng-submit="add(newTodoTitle)" >
   <div>
-    <input
-      type="text"
-      class="form-control"
-      ng-model="newTodoTitle"
-      placeholder="새로운 todo를 입력하세요.."
-      minlength="3"
-    />
+    <div class="dropdown">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Dropdown button
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Link 1</a>
+        <a class="dropdown-item" href="#">Link 2</a>
+        <a class="dropdown-item" href="#">Link 3</a>
+      </div>
+    </div>
+   
+    <label for="email" class="mr-sm-2">Email address:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" ng-model="newTodoTitle"  minlength="3" placeholder="Enter category" id="email"/>
+    <label for="email" class="mr-sm-2">Email address:</label>
+    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="Enter email" id="email">
+    <label for="email" class="mr-sm-2">Email address:</label>
+    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="Enter email" id="email">
+
   </div>
 
   <!--ng-show false 일 때 자식태그 출력 안됨-->
@@ -14,7 +25,4 @@
     <div class="alert alert-warning" role="alert">3글자 이상 입력하세요</div>
   </div>
 
-  <button class="btn btn-warning rounded-circle btn-submit mt-5" type="submit">
-    +
-  </button>
 </form>

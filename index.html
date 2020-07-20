@@ -9,37 +9,73 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/a7d50d45b6.js" crossorigin="anonymous"></script>
+
     <script src="./app.js"></script>
     <script src="./directive.js"></script>
     <script src="./controllers.js"></script>
     <script src="./services.js"></script>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
     <title>Document</title>
   </head>
   <body>
     <body ng-app="todo" ng-controller="TodoCtrl">
       <div class="container">
-        <div class="card mx-auto list">
-          <div class="card-header"><todo-date></todo-date></div>
-          <div class="card-body">
-            <h4 class="card-title text-center"><todo-title></todo-title></h4>
-            <div class="float-right mb-5">
-              <todo-filters> </todo-filters>
+        <todo-title></todo-title>
+        
+          <!--카드시작-->
+      
+          <div class="card list mb-5 mx-auto">   
+            <div class="card-header"><todo-date></todo-date></div>
+                <div class="card-body">
+                    <h4 class="card-title text-center"></h4>
+                    <div class="ml-auto mb-5">
+                        <todo-filters> </todo-filters>
+                    </div>
+                    <ul class="list-unstyled mx-auto">
+                        <li class="list-item" ng-repeat="todo in todos | filter:statusFilter">
+                            <todo-item></todo-item>
+                        </li>
+                    </ul>
+                    <button class="btn btn-warning rounded-circle btn-submit" ng-click="openForm=true">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="card-footer"> 
+                  <p class="card-text mt-5" ng-show="openForm">
+                    <todo-form></todo-form>
+                  </p>
+                </div>
             </div>
+            <!--카드 끝-->
+    
+ 
+          <!--프로그레스-->
+          <section class="category-form">
 
-            <ul class="list-unstyled">
-              <li
-                class="list-item"
-                ng-repeat="todo in todos | filter:statusFilter"
-              >
-                <todo-item></todo-item>
-              </li>
-            </ul>
-            <p class="card-text mt-5"><todo-form></todo-form></p>
-          </div>
+            <div class="card list mb-5">   
+              <div class="card-header">Progress</div>
+                  <div class="card-body">
+                    <div class="progress mb-3">
+                      <div class="progress-bar" style="width:70%">70%</div>
+                    </div>
+                    <div class="progress mb-3">
+                      <div class="progress-bar" style="width:70%">70%</div>
+                    </div>
+                    <div class="progress mb-3">
+                      <div class="progress-bar" style="width:70%">70%</div>
+                    </div>
+                  </div>
+              </div>
+          </section>
+
         </div>
-      </div>
+        <!--container-->
+
+      
+       
+        
     </body>
   </body>
 </html>

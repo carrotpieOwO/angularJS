@@ -8,9 +8,10 @@ var app = http.createServer(function (request, response) {
   if (request.url == "/favicon.ico") {
     return response.writeHead(404);
   }
-  console.log("server started");
+
   response.writeHead(200);
-  console.log(__dirname + url);
+ // console.log(__dirname + url);
   response.end(fs.readFileSync(__dirname + url));
 });
 app.listen(5000);
+console.log("server started");
