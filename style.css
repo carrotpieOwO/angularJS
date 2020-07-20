@@ -34,7 +34,7 @@ html,
 body {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -46,14 +46,13 @@ body {
   flex-direction: column;
   margin: 0;
   padding: 0;
-  width: 100%;  
-  max-width: 700px; 
+  width: 100%;
+  max-width: 700px;
   background-color: #fff;
   border-radius: 6px;
   box-shadow: 10px 10px 0 0 rgba(0, 0, 0, 0.2);
   list-style: none;
   overflow: hidden;
-  
 }
 input[type="checkbox"]:checked + input[type="text"].strikethrough {
   text-decoration: line-through;
@@ -70,9 +69,7 @@ input[type="checkbox"]:checked + input[type="text"].strikethrough {
   z-index: 100;
 }
 
-
-
-.progress-area{
+.progress-area {
   position: fixed;
   top: 10px;
   right: 3%;
@@ -81,7 +78,7 @@ input[type="checkbox"]:checked + input[type="text"].strikethrough {
   width: 15%;
 }
 
-.category-form{
+.category-form {
   position: fixed;
   bottom: 10px;
   right: 3%;
@@ -91,6 +88,28 @@ input[type="checkbox"]:checked + input[type="text"].strikethrough {
 }
 
 .scroll {
- max-height: 600px;
+  max-height: 600px;
   overflow-y: auto;
 }
+
+.borderMarker {
+  position: relative;
+  background-color: hsl(222, 100%, 93%);
+}
+
+.borderMarker::after {
+  content: "";
+  position: absolute;
+  left: -0.1px;
+  right: -0.1px;
+  bottom: 0;
+  height: 100%;
+  transform: scaleY(0.3);
+  transition: transform 0.1s ease-in-out;
+  transform-origin: bottom;
+  background-color: hsl(222, 100%, 93%);
+}
+/* 
+.borderMarker:hover::after {
+  transform: scaleY(1);
+} */

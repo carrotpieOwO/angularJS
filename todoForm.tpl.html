@@ -1,4 +1,4 @@
-<form name="todoForm" class="mt-5" ng-submit="add(newTodoCategory, newTodoTitle, newTodoDate)">
+<form name="todoForm" class="mt-5" ng-submit="add(newTodoCategory, newTodoTitle, newTodoDate, newColor)">
   <div>
 
     <label for="text" class="mr-sm-2">Category:</label>
@@ -8,26 +8,34 @@
         <option value="">(Pick One)</option>
     </select> -->
 
-      <select class="form-control col-8" ng-model="newTodoCategory" ng-show="!createCategory">
+      <select class="form-control col-8" ng-model="TodoCategory" ng-show="!createCategory">
         <option value="">기타</option>
         <option ng-repeat="todo in todos | unique:'category'">{{todo.category}}</option>
       </select>
       <input type="text" class="form-control mb-2 mr-sm-2 col-8" ng-model="newTodoCategory" ng-show="createCategory"
         placeholder="Enter category" />
+
+      <!--컬러버튼-->
+
+      <input type="radio" ng-model="newColor" value="pink">pink
+      <input type="radio" ng-model="newColor" value="skyblue">skyblue
+      <input type="radio" ng-model="newColor" value="lightgreen">lightgreen
+
+
+
       <button type="button" class="btn btn-primary" ng-click="createCategory=!createCategory"
         ng-show="!createCategory">직접입력</button>
       <button type="button" class="btn btn-primary" ng-click="createCategory=!createCategory"
         ng-show="createCategory">선택입력</button>
     </div>
 
-    <!-- <label for="text" class="mr-sm-2">Category:</label> -->
 
     <label for="text" class="mr-sm-2">Title:</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter title" ng-model="newTodoTitle"
-      minlength="3">
+    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter title" ng-model="newTodoTitle" minlength="3"
+      required>
     <label for="text" class="mr-sm-2">limit:</label>
-    <input type="text" placeholder="{{today | date : 'yyyy-MM-dd'}}" date-picker-directive ng-model="newTodoDate"
-      class="form-control mb-2 mr-sm-2">
+    <input type="text" value="{{today}}" date-picker-directive ng-model="newTodoDate" class="form-control mb-2 mr-sm-2"
+      required>
 
 
 

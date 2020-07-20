@@ -38,10 +38,19 @@ app.factory('todoStorage', function () {
             }
         },
 
-        add: function (newTodoCategory, newTodoTitle, newTodoDate) {
+        add: function (newTodoCategory, newTodoTitle, newTodoDate, newColor) {
+            var oldCategory = storage.todos.findIndex(function (item) {
+                return item.category === newTodoCategory
+            })
+
+            if (oldCategory > -1) {
+                newColor = storage.todos[oldCategory].color;
+            }
+
             //create new todos
             var newTodo = {
                 category: newTodoCategory,
+                color: newColor,
                 title: newTodoTitle,
                 completed: false,
                 closingDate: newTodoDate
