@@ -16,7 +16,7 @@ angular.module('todo').directive('todoDate', function () {
 
 angular.module('todo').directive('todoTitle', function () {
     return {
-        template: '<h1>Todo List</h1>'
+        template: '<h1 class="my-4">Todo List</h1>'
     }
 })
 
@@ -51,7 +51,7 @@ app.directive('datePickerDirective', [
             require: 'ngModel',
             link: function (scope, el, attr, ngModel) {
                 $(el).datepicker({
-                    dateFormat: "yy-mm-dd",
+                    dateFormat: "yy. m. dd.",
                     changeMonth: true,
                     changeYear: true,
                     onSelect: function (dateText) {

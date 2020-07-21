@@ -1,50 +1,61 @@
 <form name="todoForm" class="mt-5" ng-submit="add(newTodoCategory, newTodoTitle, newTodoDate, newColor)">
-  <div>
 
+     
+     <div class="row my-auto">
+      <div class="col-6 align-items-center my-auto">
     <label for="text" class="mr-sm-2">Category:</label>
-    <div class="row">
-      <!-- 
-      <select ng-model="selectValue" ng-options="item.action for item in todos">
-        <option value="">(Pick One)</option>
-    </select> -->
-
-      <select class="form-control col-8" ng-model="TodoCategory" ng-show="!createCategory">
+    <!--카테고리 선택 버튼-->
+    <button type="button" class="btn btn-primary" ng-click="createCategory=!createCategory"
+    ng-show="!createCategory">직접입력</button>
+  <button type="button" class="btn btn-primary" ng-click="createCategory=!createCategory"
+    ng-show="createCategory">선택입력</button>
+     <!--카테고리 인풋-->
+     
+      <select class="form-control mt-1" ng-model="newTodoCategory" ng-show="!createCategory">
         <option value="">기타</option>
         <option ng-repeat="todo in todos | unique:'category'">{{todo.category}}</option>
       </select>
-      <input type="text" class="form-control mb-2 mr-sm-2 col-8" ng-model="newTodoCategory" ng-show="createCategory"
-        placeholder="Enter category" />
 
-      <!--컬러버튼-->
+      <div ng-show="createCategory">
+      <input type="text" name="category" class="form-control mt-1 mb-1" ng-model="newTodoCategory" 
+        placeholder="Enter category" maxlength="5" />
+      
+      </div>
+      <!--컬러 선택 버튼-->
+      <div class="row mx-3 "  ng-show="createCategory">
+        <div class="form-check mx-2">
+        <input type="radio" ng-model="newColor"  value="pink" class="form-check-input">
+        <span class="borderMarker"  ng-style="{'background-color': 'pink'}">pink</span>
+      </div>
+      <div class="form-check mx-2">
+        <input type="radio" ng-model="newColor" value="skyblue" class="form-check-input">
+        <span class="borderMarker"  ng-style="{'background-color': 'skyblue'}">skyblue</span>
+      </div>
+      <div class="form-check mx-2">
 
-      <input type="radio" ng-model="newColor" value="pink">pink
-      <input type="radio" ng-model="newColor" value="skyblue">skyblue
-      <input type="radio" ng-model="newColor" value="lightgreen">lightgreen
+        <input type="radio" ng-model="newColor" value="lightgreen" class="form-check-input">
+        <span class="borderMarker"  ng-style="{'background-color': 'lightgreen'}">lightgreen</span>
+        </div>
+      </div>
+    </div>
+      <!--radio 컬러선택 끝-->
+      <div class="col-6 align-items-center my-auto">
+      <label for="text" >limit:</label>
+      <input type="text" placeholder="{{today}}" date-picker-directive ng-model="newTodoDate" class="form-control mb-2 mr-sm-2"/>
+    </div>
+    </div>
+    <!--row 끝-->
+     
 
-
-
-      <button type="button" class="btn btn-primary" ng-click="createCategory=!createCategory"
-        ng-show="!createCategory">직접입력</button>
-      <button type="button" class="btn btn-primary" ng-click="createCategory=!createCategory"
-        ng-show="createCategory">선택입력</button>
+    <label for="text" >Title:</label>
+    <input type="text" name="title" class="form-control mx-auto mb-2" placeholder="Enter title" ng-model="newTodoTitle" minlength="3" required>
+  
+     <!--ng-show false 일 때 자식태그 출력 안됨-->
+    <div ng-show="todoForm.title.$dirty && todoForm.title.$invalid">
+      <div class="alert alert-warning" role="alert">3글자 이상 입력하세요</div>
     </div>
 
-
-    <label for="text" class="mr-sm-2">Title:</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter title" ng-model="newTodoTitle" minlength="3"
-      required>
-    <label for="text" class="mr-sm-2">limit:</label>
-    <input type="text" value="{{today}}" date-picker-directive ng-model="newTodoDate" class="form-control mb-2 mr-sm-2"
-      required>
-
-
-
-  </div>
-
-  <!--ng-show false 일 때 자식태그 출력 안됨-->
-  <div ng-show="todoForm.$dirty && todoForm.$invalid">
-    <div class="alert alert-warning" role="alert">3글자 이상 입력하세요</div>
-  </div>
+ 
 
   <button class="btn btn-warning rounded-circle btn-submit" type="submit" ng-disabled="todoForm.$invalid">
     add

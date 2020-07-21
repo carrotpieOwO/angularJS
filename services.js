@@ -39,6 +39,12 @@ app.factory('todoStorage', function () {
         },
 
         add: function (newTodoCategory, newTodoTitle, newTodoDate, newColor) {
+            console.log(newTodoCategory, newTodoDate, newTodoTitle, newColor);
+
+            if(newTodoCategory === '' || newTodoCategory === undefined){
+                newTodoCategory = '기타'
+            }
+
             var oldCategory = storage.todos.findIndex(function (item) {
                 return item.category === newTodoCategory
             })
@@ -47,6 +53,11 @@ app.factory('todoStorage', function () {
                 newColor = storage.todos[oldCategory].color;
             }
 
+            if(newTodoDate === '' || newTodoDate === undefined ){
+                newTodoDate = new Date().toLocaleDateString();
+            }
+
+            console.log(newTodoCategory, newTodoDate, newTodoTitle, newColor);
             //create new todos
             var newTodo = {
                 category: newTodoCategory,

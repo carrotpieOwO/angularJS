@@ -27,7 +27,7 @@
 
   <body ng-app="todo" ng-controller="TodoCtrl">
     <div class="container">
-      <todo-title></todo-title>
+      <todo-title class="text-center"></todo-title>
 
       <!--카드시작-->
 
@@ -37,6 +37,23 @@
         </div>
         <div class="card-body">
           <h4 class="card-title text-center"></h4>
+          <!--입력폼 토글 버튼-->
+          <div class="row justify-content-center">
+          <button class="btn btn-warning rounded-circle" ng-show="!openForm" ng-click="openForm=!openForm">
+            <i class="fas fa-plus"></i>
+          </button>
+          <button class="btn btn-warning rounded-circle" ng-show="openForm" ng-click="openForm=!openForm">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+          <p class="card-text mt-5" ng-show="openForm">
+            <todo-form></todo-form>
+          </p>
+          <!--progressBar-->
+          <div class="progress mb-3 mt-3">
+            <div class="progress-bar" style="width: {{percentage()}}%"> {{percentage()}} %</div>
+          </div>
+
           <div class="ml-auto mb-5">
             <todo-filters> </todo-filters>
           </div>
@@ -45,24 +62,21 @@
               <todo-item></todo-item>
             </li>
           </ul>
-          <button class="btn btn-warning rounded-circle" ng-click="openForm=!openForm">
-            <i class="fas fa-plus"></i>
-          </button>
+         
 
         </div>
-        <div class="card-footer">
+         <!-- <div class="card-footer">
           <p class="card-text mt-5" ng-show="openForm">
             <todo-form></todo-form>
           </p>
-        </div>
+        </div>  -->
       </div>
 
       <!--카드 끝-->
 
 
       <!--프로그레스-->
-      <section class="category-form">
-
+      <!-- <section class="category-form">
         <div class="card list mb-5">
           <div class="card-header">Progress</div>
           <div class="card-body">
@@ -77,7 +91,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
     </div>
     <!--container-->

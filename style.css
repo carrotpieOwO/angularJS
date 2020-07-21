@@ -38,7 +38,6 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
 }
 
 .list {
@@ -95,6 +94,7 @@ input[type="checkbox"]:checked + input[type="text"].strikethrough {
 .borderMarker {
   position: relative;
   background-color: hsl(222, 100%, 93%);
+  width: 90px;
 }
 
 .borderMarker::after {
@@ -107,9 +107,6 @@ input[type="checkbox"]:checked + input[type="text"].strikethrough {
   transform: scaleY(0.3);
   transition: transform 0.1s ease-in-out;
   transform-origin: bottom;
-  background-color: hsl(222, 100%, 93%);
+ 
+  /* background-color: hsl(222, 100%, 93%); */
 }
-/* 
-.borderMarker:hover::after {
-  transform: scaleY(1);
-} */

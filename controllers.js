@@ -14,15 +14,32 @@ app.controller("TodoCtrl", function ($scope, todoStorage) {
   $scope.add = function (newTodoCategory, newTodoTitle, newTodoDate, newColor) {
     if (newTodoCategory)
       //데이터 조작하는 부분만 service에서 넘겨받기
+      console.log(newTodoCategory, newTodoDate, newTodoTitle, newColor);
+
       todoStorage.add(newTodoCategory, newTodoTitle, newTodoDate, newColor);
 
     //empty form
     $scope.newTodoTitle = "";
+    $scope.newTodoCategory = "";
+    $scope.newTodoDate = "";
   };
 
   $scope.update = function () {
     todoStorage.update();
   };
 
-  $scope.buttonNames = ["Red", "Green", "Blue"];
+  $scope.percentage = function(){
+    var completedCount = 0;
+    var todosLength = $scope.todos.length;
+
+    angular.forEach($scope.todos, function(todo){
+      if(todo.completed){completedCount++}
+    })
+
+    var percentage = completedCount/todosLength*100
+
+    return percentage;
+  }
+
+  // $scope.buttonNames = ["Red", "Green", "Blue"];
 });
