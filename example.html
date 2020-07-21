@@ -1,0 +1,22 @@
+<body ng-controller="indexController">
+    <div class="row align-items-center justify-content-center index-loading-container-box" ng-if="!loadingState">
+      <!-- <div class="index-loading-container">
+        <div class="index-loading"></div>
+        <div id="index-loading-text">
+          loading
+        </div>
+      </div>-->
+
+      <div class="spinner"></div>
+      <!-- <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="2" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+      </svg> -->
+    </div>
+
+    <div class="container-fluid" ng-if="loadingState">
+      <div class="sidebar" ng-include src="'app/views/sidebar.html'" ng-if="checkState"></div>
+      <div class="header" ng-include src="'app/views/nav.html'" ng-if="checkState"></div>
+      <div class="timeline" ng-include src="'app/views/timeline.html'" ng-if="checkState && !dcs"></div>
+      <div ui-view class="content"></div>
+    </div>
+

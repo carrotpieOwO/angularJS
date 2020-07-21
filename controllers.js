@@ -4,6 +4,24 @@ app.controller("TodoCtrl", function ($scope, todoStorage) {
   this.isOpen = false;
 
   $scope.today = new Date().toLocaleDateString();
+  $scope.selectedTodos = [];
+
+  $scope.switchDay = function(cal){
+    console.log(cal)
+    const tomorrow = new Date($scope.today)
+    const yesterday = new Date($scope.today)
+    tomorrow.setDate(tomorrow.getDate()+1)
+    yesterday.setDate(yesterday.getDate()-1)
+    if(cal === 'next'){
+      console.log('next')
+
+      $scope.today = tomorrow.toLocaleDateString()
+      console.log($scope.today)
+    }else{
+      $scope.today = yesterday.toLocaleDateString()
+    }
+  }
+
   $scope.todos = todoStorage.get();
 
   $scope.remove = function (todo) {
@@ -28,18 +46,23 @@ app.controller("TodoCtrl", function ($scope, todoStorage) {
     todoStorage.update();
   };
 
-  $scope.percentage = function(){
+  $scope.percentage = function(todos){
     var completedCount = 0;
-    var todosLength = $scope.todos.length;
+    var todosLength = todos.length;
+   // console.log(todosLength)
 
-    angular.forEach($scope.todos, function(todo){
+    angular.forEach(todos, function(todo){
       if(todo.completed){completedCount++}
     })
 
-    var percentage = completedCount/todosLength*100
-
+    var percentage = completedCount/todosLength *100
     return percentage;
   }
 
-  // $scope.buttonNames = ["Red", "Green", "Blue"];
+  $scope.selectTodos = function(todo){
+    // $scope.selectedTodos = todo.closingDate >= $scope.today
+    return todo.closingDate >= $scope.today
+  }
+
 });
+

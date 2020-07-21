@@ -31,9 +31,13 @@
 
       <!--카드시작-->
 
-      <div class="card list mb-5 mx-auto ">
-        <div class="card-header">
-          <todo-date></todo-date>
+      <div class="card list mb-5 mx-auto">
+       
+        <div class="card-header row justify-content-between">
+          <a href="" class="ml-5" ng-click="switchDay('pre')" style="font-size:xx-large;">&lsaquo;</a>
+          {{today}}
+          <!-- <todo-date></todo-date> -->
+          <a href="" class="mr-5" ng-click="switchDay('next')" style="font-size:xx-large;">&rsaquo;</a>
         </div>
         <div class="card-body">
           <h4 class="card-title text-center"></h4>
@@ -51,47 +55,26 @@
           </p>
           <!--progressBar-->
           <div class="progress mb-3 mt-3">
-            <div class="progress-bar" style="width: {{percentage()}}%"> {{percentage()}} %</div>
+            <div class="progress-bar" style="width: {{percentage(todos|filter:selectTodos)}}%"> {{percentage(todos|filter:selectTodos)}} %</div>
           </div>
 
           <div class="ml-auto mb-5">
             <todo-filters> </todo-filters>
           </div>
           <ul class="list-unstyled mx-auto">
-            <li class="list-item" ng-repeat="todo in todos | filter:statusFilter">
+            <li class="list-item" ng-repeat="todo in todos | filter:statusFilter | filter:selectTodos" >
+             
               <todo-item></todo-item>
             </li>
           </ul>
          
 
         </div>
-         <!-- <div class="card-footer">
-          <p class="card-text mt-5" ng-show="openForm">
-            <todo-form></todo-form>
-          </p>
-        </div>  -->
+        
       </div>
 
       <!--카드 끝-->
 
-
-      <!--프로그레스-->
-      <!-- <section class="category-form">
-        <div class="card list mb-5">
-          <div class="card-header">Progress</div>
-          <div class="card-body">
-            <div class="progress mb-3">
-              <div class="progress-bar" style="width:70%">70%</div>
-            </div>
-            <div class="progress mb-3">
-              <div class="progress-bar" style="width:70%">70%</div>
-            </div>
-            <div class="progress mb-3">
-              <div class="progress-bar" style="width:70%">70%</div>
-            </div>
-          </div>
-        </div>
-      </section> -->
 
     </div>
     <!--container-->

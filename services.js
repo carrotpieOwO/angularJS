@@ -20,8 +20,15 @@ app.factory('todoStorage', function () {
 
         //컨트롤러에서 갖다 쓰기 때문에 public으로 오픈되어 있다.
         //데이터 조작 함수
+        // function p(ms) {
+        //     return new Promise((resolve,reject) => {
+        //         setTimeout(()=>{
+        //             resolve(ms)
+        //         }, ms)
+        //     })
+        // }
         get: function () {
-
+            
             angular.copy(storage._getFromLocalStorage(), storage.todos)
             return storage.todos;
 
