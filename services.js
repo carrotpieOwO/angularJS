@@ -16,21 +16,30 @@ app.factory('todoStorage', function () {
             //해당 키에 해당하는 데이터가 문자열로 리턴되는데 이 문자열을 객체로 바꿔서 받기
             //데이터가 없을 경우에 빈문자열 리턴
             return JSON.parse(localStorage.getItem(TODO_DATA)) || []
-        },
+
+                 },
 
         //컨트롤러에서 갖다 쓰기 때문에 public으로 오픈되어 있다.
         //데이터 조작 함수
-        // function p(ms) {
-        //     return new Promise((resolve,reject) => {
-        //         setTimeout(()=>{
-        //             resolve(ms)
-        //         }, ms)
-        //     })
-        // }
+     
         get: function () {
             
-            angular.copy(storage._getFromLocalStorage(), storage.todos)
-            return storage.todos;
+         //  angular.copy(storage._getFromLocalStorage(), storage.todos)
+            return new Promise((resolve, reject)=>{
+                angular.copy(storage._getFromLocalStorage(), storage.todos)
+                
+                setTimeout(()=>{
+                  
+
+                    resolve( storage.todos)
+                },3000)
+            })
+            // await storage._getFromLocalStorage().then((res)=>{
+            //     console.log(res)
+            //     angular.copy(res, storage.todos)
+            //     return storage.todos;
+
+            // })
 
         },
 
@@ -46,8 +55,7 @@ app.factory('todoStorage', function () {
         },
 
         add: function (newTodoCategory, newTodoTitle, newTodoDate, newColor) {
-            console.log(newTodoCategory, newTodoDate, newTodoTitle, newColor);
-
+        
             if(newTodoCategory === '' || newTodoCategory === undefined){
                 newTodoCategory = '기타'
             }

@@ -5,7 +5,41 @@ app.controller("TodoCtrl", function ($scope, todoStorage) {
 
   $scope.today = new Date().toLocaleDateString();
   $scope.selectedTodos = [];
+  $scope.loadingState = false;
+//  $scope.todos;
 
+  (async function getTodos(){
+    await todoStorage.get().then((res)=>{
+     console.log(res)
+     console.log($scope.loadingState)
+    
+     // return res;
+
+     $scope.percentage = function(todos){
+      var completedCount = 0;
+      var todosLength = todos.length;
+     // console.log(todosLength)
+  
+      angular.forEach(todos, function(todo){
+        if(todo.completed){completedCount++}
+      })
+  
+      var percentage = completedCount/todosLength *100
+      return percentage;
+    }
+
+    $scope.$apply(function(){
+      $scope.loadingState =true
+      $scope.todos = res;
+    });
+
+    console.log($scope.todos)
+    console.log($scope.loadingState)
+    
+    })
+  })()
+
+  //변수명 바꾸기 
   $scope.switchDay = function(cal){
     console.log(cal)
     const tomorrow = new Date($scope.today)
@@ -22,12 +56,12 @@ app.controller("TodoCtrl", function ($scope, todoStorage) {
     }
   }
 
-  $scope.todos = todoStorage.get();
-
   $scope.remove = function (todo) {
     //remove 도 서비스에서 받아오기
     todoStorage.remove(todo);
   };
+
+  $scope.formData = {};
 
   $scope.add = function (newTodoCategory, newTodoTitle, newTodoDate, newColor) {
     if (newTodoCategory)
@@ -37,27 +71,16 @@ app.controller("TodoCtrl", function ($scope, todoStorage) {
       todoStorage.add(newTodoCategory, newTodoTitle, newTodoDate, newColor);
 
     //empty form
-    $scope.newTodoTitle = "";
-    $scope.newTodoCategory = "";
-    $scope.newTodoDate = "";
+      $scope.formData.newTodoTitle = '';  
+      $scope.formData.newTodoCategory = '';
+      $scope.formData.newTodoDate = '';
+      console.log($scope.formData.newTodoTitle);
   };
 
   $scope.update = function () {
     todoStorage.update();
   };
 
-  $scope.percentage = function(todos){
-    var completedCount = 0;
-    var todosLength = todos.length;
-   // console.log(todosLength)
-
-    angular.forEach(todos, function(todo){
-      if(todo.completed){completedCount++}
-    })
-
-    var percentage = completedCount/todosLength *100
-    return percentage;
-  }
 
   $scope.selectTodos = function(todo){
     // $scope.selectedTodos = todo.closingDate >= $scope.today

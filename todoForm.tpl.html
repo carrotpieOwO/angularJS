@@ -1,4 +1,4 @@
-<form name="todoForm" class="mt-5" ng-submit="add(newTodoCategory, newTodoTitle, newTodoDate, newColor)">
+<form name="todoForm" class="mt-5" ng-submit="add(formData.newTodoCategory, formData.newTodoTitle, formData.newTodoDate, data.newColor)">
 
      
      <div class="row my-auto">
@@ -11,13 +11,13 @@
     ng-show="createCategory">선택입력</button>
      <!--카테고리 인풋-->
      
-      <select class="form-control mt-1" ng-model="newTodoCategory" ng-show="!createCategory">
+      <select class="form-control mt-1" ng-model="formData.newTodoCategory" ng-show="!createCategory">
         <option value="">기타</option>
         <option ng-repeat="todo in todos | unique:'category'">{{todo.category}}</option>
       </select>
 
       <div ng-show="createCategory">
-      <input type="text" name="category" class="form-control mt-1 mb-1" ng-model="newTodoCategory" 
+      <input type="text" name="category" class="form-control mt-1 mb-1" ng-model="formData.newTodoCategory" 
         placeholder="Enter category" maxlength="5" />
       
       </div>
@@ -41,14 +41,14 @@
       <!--radio 컬러선택 끝-->
       <div class="col-6 align-items-center my-auto">
       <label for="text" >limit:</label>
-      <input type="text" placeholder="{{today}}" date-picker-directive ng-model="newTodoDate" class="form-control mb-2 mr-sm-2"/>
+      <input type="text" placeholder="{{today}}" date-picker-directive ng-model="formData.newTodoDate" class="form-control mb-2 mr-sm-2"/>
     </div>
     </div>
     <!--row 끝-->
      
 
     <label for="text" >Title:</label>
-    <input type="text" name="title" class="form-control mx-auto mb-2" placeholder="Enter title" ng-model="newTodoTitle" minlength="3" required>
+    <input type="text" name="title" class="form-control mx-auto mb-2" placeholder="Enter title" ng-model="formData.newTodoTitle" minlength="3" required/>
   
      <!--ng-show false 일 때 자식태그 출력 안됨-->
     <div ng-show="todoForm.title.$dirty && todoForm.title.$invalid">

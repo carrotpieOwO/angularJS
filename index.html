@@ -23,12 +23,14 @@
   <title>Document</title>
 </head>
 
-<body>
+  <body ng-app="todo" ng-controller="TodoCtrl" >
 
-  <body ng-app="todo" ng-controller="TodoCtrl">
-    <div class="container">
+    <div class="justify-content-center" ng-if="!loadingState">
+      <img src="/coding_cat.gif" alt="">
+    </div>
+
+    <div class="container" ng-if="loadingState">
       <todo-title class="text-center"></todo-title>
-
       <!--카드시작-->
 
       <div class="card list mb-5 mx-auto">
@@ -83,6 +85,5 @@
 
 
   </body>
-</body>
 
 </html>
