@@ -1,27 +1,12 @@
-app.directive('highlight', function () {
-    return function (scope, element, attrs) {
-        if (scope.day == attrs['hightlight']) {
-            element.css('color', 'red')
-        }
-    }
-})
-
-app.directive('todoDate', function () {
-    let today = new Date().toLocaleDateString();
-    return {
-        template: '<h1 class="text-center">' + today + '</h1>'
-    }
-})
-
 app.directive('todoTitle', function () {
     return {
         template: '<h1 class="my-4">Todo List</h1>'
     }
 })
 
-app.directive('todoCard', function () {
+app.directive('todoDate', function () {
     return {
-        templateUrl: 'todoCards.tpl.html'
+        templateUrl: 'todoDate.tpl.html'
     }
 })
 
@@ -41,6 +26,12 @@ app.directive('todoFilters', function () {
 app.directive('todoForm', function () {
     return {
         templateUrl: 'todoForm.tpl.html'
+    }
+})
+
+app.directive('todoToggle', function(){
+    return{
+        templateUrl: 'todoToggle.tpl.html'
     }
 })
 
