@@ -3,42 +3,34 @@
     {{todo.category}}
   </span>
   <div class="input-group">
+    <!--완료체크-->
     <div class="input-group-prepend">
       <div class="input-group-text">
         <input type="checkbox" ng-model="todo.completed" ng-click="update()" />
       </div>
     </div>
-    <!--text필드에서 포커스아웃 시 블러라는 이벤트가 발생함-->
-    <input
-      type="text"
-      class="form-control strikethrough"
-      ng-model="todo.title"
-      ng-blur="update()"
-    />
+    <!--투두 내용 수정-->
+    <input type="text" class="form-control" ng-model="todo.title" ng-blur="update()"/>
+    <!--투두 삭제 버튼-->
     <span class="input-group-append">
-      <!-- 버튼 핸들러 : ng-click // 컨트롤러 연결되있으므로 컨트롤러에 정의하면 됨 -->
-      <button
-        class="btn btn-sm btn-danger"
-        type="button"
-        ng-click="remove(todo)"
-      >
-      <i class="fas fa-trash-alt"></i>
+      <button class="btn btn-sm btn-danger" type="button" ng-click="remove(todo)">
+        <i class="fas fa-trash-alt"></i>
       </button>
     </span>
   </div>
 </div>
-<!-- <input type="text" placeholder="{{today}}" date-picker-directive ng-model="newTodoDate" class="form-control mb-2 mr-sm-2"/> -->
+
+<!--종료일-->
 <div class="text-right mr-5 my-2">
   {{todo.closingDate | date : 'yyyy-MM-dd'}} 까지 
+  <!--수정,취소 버튼 토글-->
   <button class="btn btn-sm btn-warning" ng-show="!dateUpdate" ng-click="dateUpdate =! dateUpdate"><i class="far fa-calendar-alt"></i></button>
-  <!-- <div ng-show="dateUpdate" ng-blur="update, !dateUpdate"><input type="text" placeholder="{{todo.closingDate}}" date-picker-directive ng-model="todo.closingDate" class="form-control mb-2 mr-sm-2"/></div> -->
   <button class="btn btn-sm btn-warning" ng-show="dateUpdate" ng-click="dateUpdate =! dateUpdate">취소</button>
   <!--마감일 수정-->
   <div class="input-group my-1 ml-auto" ng-show="dateUpdate" style="width: 25%;">
-    <input type="text" class="form-control" placeholder="{{todo.closingDate}}" date-picker-directive ng-model="todo.closingDate">
+    <input type="text" class="form-control" placeholder="{{todo.closingDate}}" date-picker-directive ng-model="todo.closingDate"/>
     <div class="input-group-append">
       <button class="btn btn-success" ng-click="dateUpdate =!dateUpdate; update()"><i class="far fa-calendar-check"></i></button>
     </div>
   </div>
-
 </div>

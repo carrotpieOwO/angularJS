@@ -4,43 +4,23 @@ app.factory('todoStorage', function () {
     var storage = {
         //todos 데이터
         todos: [
-
         ],
-
         _saveToLocalStorage: function (data) {
-
             localStorage.setItem(TODO_DATA, JSON.stringify(data))
         },
-
         _getFromLocalStorage: function () {
             //해당 키에 해당하는 데이터가 문자열로 리턴되는데 이 문자열을 객체로 바꿔서 받기
             //데이터가 없을 경우에 빈문자열 리턴
             return JSON.parse(localStorage.getItem(TODO_DATA)) || []
-
-                 },
-
-        //컨트롤러에서 갖다 쓰기 때문에 public으로 오픈되어 있다.
+        },
         //데이터 조작 함수
-     
         get: function () {
-            
-         //  angular.copy(storage._getFromLocalStorage(), storage.todos)
             return new Promise((resolve, reject)=>{
-                angular.copy(storage._getFromLocalStorage(), storage.todos)
-                
+                angular.copy(storage._getFromLocalStorage(), storage.todos)                
                 setTimeout(()=>{
-                  
-
                     resolve( storage.todos)
                 },3000)
             })
-            // await storage._getFromLocalStorage().then((res)=>{
-            //     console.log(res)
-            //     angular.copy(res, storage.todos)
-            //     return storage.todos;
-
-            // })
-
         },
 
         remove: function (todo) {
@@ -94,4 +74,3 @@ app.factory('todoStorage', function () {
     }
     return storage
 })
-

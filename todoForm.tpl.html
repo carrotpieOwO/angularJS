@@ -1,64 +1,57 @@
-<form name="todoForm" class="mt-5" ng-submit="add(formData.newTodoCategory, formData.newTodoTitle, formData.newTodoDate, data.newColor)">
-
-     
-     <div class="row my-auto">
-      <div class="col-6 align-items-center my-auto">
-    <label for="text" class="mr-sm-2">Category:</label>
-    <!--카테고리 선택 버튼-->
-    <button type="button" class="btn btn-primary btn-sm" ng-click="createCategory=!createCategory"
-    ng-show="!createCategory">직접입력</button>
-  <button type="button" class="btn btn-primary btn-sm" ng-click="createCategory=!createCategory"
-    ng-show="createCategory">선택입력</button>
-     <!--카테고리 인풋-->
-     
+<form name="todoForm" class="mt-5" ng-submit="add(formData.newTodoCategory, formData.newTodoTitle, formData.newTodoDate, formData.newColor)">
+  <div class="row my-auto">
+    <div class="col-6 align-items-center my-auto">
+      <label for="text" class="mr-sm-2">카테고리:</label>
+    <!--카테고리 입력방법 버튼-->
+      <button type="button" class="btn btn-primary btn-sm" ng-click="createCategory=!createCategory" ng-show="!createCategory">직접입력</button>
+      <button type="button" class="btn btn-primary btn-sm" ng-click="createCategory=!createCategory" ng-show="createCategory">선택입력</button>
+    
+      <!--카테고리 선택입력--> 
       <select class="form-control mt-1" ng-model="formData.newTodoCategory" ng-show="!createCategory">
         <option value="">기타</option>
         <option ng-repeat="todo in todos | unique:'category'">{{todo.category}}</option>
       </select>
 
+      <!--카테고리 직접입력-->
       <div ng-show="createCategory">
-      <input type="text" name="category" class="form-control mt-1 mb-1" ng-model="formData.newTodoCategory" 
+        <input type="text" name="category" class="form-control mt-1 mb-1" ng-model="formData.newTodoCategory" 
         placeholder="Enter category" maxlength="5" />
-      
       </div>
+
       <!--컬러 선택 버튼-->
       <div class="row mx-3 "  ng-show="createCategory">
         <div class="form-check mx-2">
-        <input type="radio" ng-model="newColor"  value="pink" class="form-check-input">
-        <span class="borderMarker"  ng-style="{'background-color': 'pink'}">pink</span>
-      </div>
-      <div class="form-check mx-2">
-        <input type="radio" ng-model="newColor" value="skyblue" class="form-check-input">
-        <span class="borderMarker"  ng-style="{'background-color': 'skyblue'}">skyblue</span>
-      </div>
-      <div class="form-check mx-2">
-
-        <input type="radio" ng-model="newColor" value="lightgreen" class="form-check-input">
-        <span class="borderMarker"  ng-style="{'background-color': 'lightgreen'}">lightgreen</span>
+          <input type="radio" ng-model="formData.newColor"  value="pink" class="form-check-input">
+          <span class="borderMarker"  ng-style="{'background-color': 'pink'}">pink</span>
+        </div>
+        <div class="form-check mx-2">
+          <input type="radio" ng-model="formData.newColor" value="skyblue" class="form-check-input">
+          <span class="borderMarker"  ng-style="{'background-color': 'skyblue'}">skyblue</span>
+        </div>
+        <div class="form-check mx-2">
+          <input type="radio" ng-model="formData.newColor" value="lightgreen" class="form-check-input">
+          <span class="borderMarker"  ng-style="{'background-color': 'lightgreen'}">lightgreen</span>
         </div>
       </div>
     </div>
-      <!--radio 컬러선택 끝-->
-      <div class="col-6 align-items-center my-auto">
-      <label for="text" >limit:</label>
+    <!--카테고리 입력 끝-->
+
+    <div class="col-6 align-items-center my-auto">
+      <label for="text" >기간:</label>
       <input type="text" placeholder="{{today}}" date-picker-directive ng-model="formData.newTodoDate" class="form-control mb-2 mr-sm-2"/>
     </div>
-    </div>
+  </div>
     <!--row 끝-->
-     
 
-    <label for="text" >Title:</label>
+    <label for="text" >할일:</label>
     <input type="text" name="title" class="form-control mx-auto mb-2" placeholder="Enter title" ng-model="formData.newTodoTitle" minlength="3" required/>
   
-     <!--ng-show false 일 때 자식태그 출력 안됨-->
+    <!--타이틀 valid체크-->
     <div ng-show="todoForm.title.$dirty && todoForm.title.$invalid">
       <div class="alert alert-warning" role="alert">3글자 이상 입력하세요</div>
     </div>
 
- 
-
-  <button class="btn btn-warning btn-submit" type="submit" ng-disabled="todoForm.$invalid">
-    등록
-  </button>
-
+    <button class="btn btn-warning btn-submit" type="submit" ng-disabled="todoForm.$invalid">
+      등록
+    </button>
 </form>
