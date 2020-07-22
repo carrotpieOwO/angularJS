@@ -5,9 +5,9 @@
       <div class="col-6 align-items-center my-auto">
     <label for="text" class="mr-sm-2">Category:</label>
     <!--카테고리 선택 버튼-->
-    <button type="button" class="btn btn-primary" ng-click="createCategory=!createCategory"
+    <button type="button" class="btn btn-primary btn-sm" ng-click="createCategory=!createCategory"
     ng-show="!createCategory">직접입력</button>
-  <button type="button" class="btn btn-primary" ng-click="createCategory=!createCategory"
+  <button type="button" class="btn btn-primary btn-sm" ng-click="createCategory=!createCategory"
     ng-show="createCategory">선택입력</button>
      <!--카테고리 인풋-->
      
@@ -57,8 +57,8 @@
 
  
 
-  <button class="btn btn-warning rounded-circle btn-submit" type="submit" ng-disabled="todoForm.$invalid">
-    add
+  <button class="btn btn-warning btn-submit" type="submit" ng-disabled="todoForm.$invalid">
+    등록
   </button>
 
 </form>

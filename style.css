@@ -110,3 +110,34 @@ input[type="checkbox"]:checked + input[type="text"].strikethrough {
  
   /* background-color: hsl(222, 100%, 93%); */
 }
+
+.btn-primary{
+  background-color: #c06c84;
+  border-color: #c06c84;
+}
+
+
+.btn-warning{
+  background-color: #355c7d;
+  border: #355c7d;
+  color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:visited, .btn-primary:active:focus, .btn-primary:active:hover, 
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning:visited, .btn-warnig:active:focus, .btn-warning:active:hover, .btn-warning:disabled{
+  background-color: #6c5b7b;
+  border: #6c5b7b;
+  color: #fff;
+}
+
+.arrow-date{
+  cursor: pointer;
+  font-size: x-large;
+}
+
+.btn-top{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  
+}

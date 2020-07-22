@@ -1,5 +1,5 @@
 //첫번째 인자 이름 두번째 인자 팩토리함수
-app.controller("TodoCtrl", function ($scope, todoStorage) {
+app.controller("TodoCtrl", function ($scope, todoStorage, $anchorScroll) {
   this.myDate = new Date();
   this.isOpen = false;
 
@@ -7,6 +7,11 @@ app.controller("TodoCtrl", function ($scope, todoStorage) {
   $scope.selectedTodos = [];
   $scope.loadingState = false;
 //  $scope.todos;
+
+  // 상단 이동 버튼
+  $scope.gotoTop = function () {
+    $anchorScroll('top');
+  };
 
   (async function getTodos(){
     await todoStorage.get().then((res)=>{
@@ -24,7 +29,7 @@ app.controller("TodoCtrl", function ($scope, todoStorage) {
         if(todo.completed){completedCount++}
       })
   
-      var percentage = completedCount/todosLength *100
+      var percentage = Math.ceil(completedCount/todosLength *100)
       return percentage;
     }
 

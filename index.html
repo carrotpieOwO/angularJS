@@ -25,21 +25,20 @@
 
   <body ng-app="todo" ng-controller="TodoCtrl" >
 
-    <div class="justify-content-center" ng-if="!loadingState">
+    <div class="justify-content-center loading" ng-if="!loadingState">
       <img src="/coding_cat.gif" alt="">
     </div>
 
-    <div class="container" ng-if="loadingState">
+    <div id="top" class="container" ng-if="loadingState">
       <todo-title class="text-center"></todo-title>
       <!--카드시작-->
 
       <div class="card list mb-5 mx-auto">
        
         <div class="card-header row justify-content-between">
-          <a href="" class="ml-5" ng-click="switchDay('pre')" style="font-size:xx-large;">&lsaquo;</a>
-          {{today}}
-          <!-- <todo-date></todo-date> -->
-          <a href="" class="mr-5" ng-click="switchDay('next')" style="font-size:xx-large;">&rsaquo;</a>
+          <a class="ml-5 arrow-date" ng-click="switchDay('pre')" style="font-size:xx-large;">&lsaquo;</a>
+            <h1>{{today}}</h1>
+          <a class="mr-5 arrow-date" ng-click="switchDay('next')" style="font-size:xx-large;">&rsaquo;</a>
         </div>
         <div class="card-body">
           <h4 class="card-title text-center"></h4>
@@ -77,7 +76,7 @@
 
       <!--카드 끝-->
 
-
+      <button ng-click="gotoTop()" class="btn btn-primary btn-top">Go to Top! &utrif;</button>
     </div>
     <!--container-->
 

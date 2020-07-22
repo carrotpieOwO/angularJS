@@ -30,9 +30,9 @@
 <!-- <input type="text" placeholder="{{today}}" date-picker-directive ng-model="newTodoDate" class="form-control mb-2 mr-sm-2"/> -->
 <div class="text-right mr-5 my-2">
   {{todo.closingDate | date : 'yyyy-MM-dd'}} 까지 
-  <button class="btn btn-sm btn-primary" ng-show="!dateUpdate" ng-click="dateUpdate =! dateUpdate"><i class="far fa-calendar-alt"></i></button>
+  <button class="btn btn-sm btn-warning" ng-show="!dateUpdate" ng-click="dateUpdate =! dateUpdate"><i class="far fa-calendar-alt"></i></button>
   <!-- <div ng-show="dateUpdate" ng-blur="update, !dateUpdate"><input type="text" placeholder="{{todo.closingDate}}" date-picker-directive ng-model="todo.closingDate" class="form-control mb-2 mr-sm-2"/></div> -->
-  <button class="btn btn-sm btn-primary" ng-show="dateUpdate" ng-click="dateUpdate =! dateUpdate">취소</button>
+  <button class="btn btn-sm btn-warning" ng-show="dateUpdate" ng-click="dateUpdate =! dateUpdate">취소</button>
   <!--마감일 수정-->
   <div class="input-group my-1 ml-auto" ng-show="dateUpdate" style="width: 25%;">
     <input type="text" class="form-control" placeholder="{{todo.closingDate}}" date-picker-directive ng-model="todo.closingDate">
