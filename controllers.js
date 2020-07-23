@@ -2,24 +2,32 @@
 app.controller("TodoCtrl", function ($scope, todoStorage, $anchorScroll) {
   $scope.today = new Date().toLocaleDateString();
   $scope.loadingState = false;
+  $scope.todos;
 
+  //다시보기
   //todo 데이터 받아오기
   (async function getTodos(){
     await todoStorage.get().then((res)=>{
-      $scope.percentage = function(todos){
-        var completedCount = 0;
-        var todosLength = todos.length;
-        angular.forEach(todos, function(todo){
-          if(todo.completed){completedCount++}
-        })
-        var percentage = Math.ceil(completedCount/todosLength *100)
+      
+      $scope.percentage = function(res){
+        let completedCount = 0;
+        let todosLength = res.length;
+        let percentage = 0;
+
+        if(todosLength != 0){
+          angular.forEach(res, function(todo){
+            if(todo.completed){completedCount++}
+          })
+          percentage = Math.ceil(completedCount/todosLength *100);
+        }
+        console.trace('digest trace')
+        console.time('digest time')
         return percentage;
       }
 
-      //중요!! 한번 더 보기
       $scope.$apply(function(){
-        $scope.loadingState =true
         $scope.todos = res;
+        $scope.loadingState =true;
       });
     })
   })()
@@ -27,8 +35,7 @@ app.controller("TodoCtrl", function ($scope, todoStorage, $anchorScroll) {
   //투두 추가
   $scope.formData = {};
   $scope.add = function (newTodoCategory, newTodoTitle, newTodoDate, newColor) {
-    if (newTodoCategory)
-      console.log(newTodoCategory, newTodoDate, newTodoTitle, newColor);
+     // console.log(newTodoCategory, newTodoDate, newTodoTitle, newColor);
       todoStorage.add(newTodoCategory, newTodoTitle, newTodoDate, newColor);
 
     //add 하고나서 폼 비워주기
@@ -48,25 +55,26 @@ app.controller("TodoCtrl", function ($scope, todoStorage, $anchorScroll) {
     todoStorage.remove(todo);
   };
 
+  //날짜이동
+  $scope.changeDate = function(indicator){
+    const nextDay = new Date($scope.today);
+    const prevDay = new Date($scope.today);
+    nextDay.setDate(nextDay.getDate()+1);
+    prevDay.setDate(prevDay.getDate()-1);
+    if(indicator === 'next'){
+      $scope.today = nextDay.toLocaleDateString();
+      //console.log($scope.today)
+    }else{
+      $scope.today = prevDay.toLocaleDateString();
+    }
+  }
+
   //투두 필터: 마감일 지난거 보여주지 않기
-  $scope.selectTodos = function(todo){
+  $scope.hideClosingTodos = function(todo){
     return todo.closingDate >= $scope.today
   }
 
-  //날짜이동
-  $scope.changeDate = function(indicator){
-    const tomorrow = new Date($scope.today)
-    const yesterday = new Date($scope.today)
-    tomorrow.setDate(tomorrow.getDate()+1)
-    yesterday.setDate(yesterday.getDate()-1)
-    if(indicator === 'next'){
-      $scope.today = tomorrow.toLocaleDateString()
-      //console.log($scope.today)
-    }else{
-      $scope.today = yesterday.toLocaleDateString()
-    }
-  }
-  
+
   // 상단 이동 버튼
   $scope.gotoTop = function () {
     $anchorScroll('top');

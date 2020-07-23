@@ -39,12 +39,13 @@ app.directive('datePickerDirective', [
     function () {
         return {
             require: 'ngModel',
-            link: function (scope, el, attr, ngModel) {
+            link: function (scope, el, attrs, ngModel) {
                 $(el).datepicker({
                     dateFormat: "yy. m. dd.",
                     changeMonth: true,
                     changeYear: true,
                     onSelect: function (dateText) {
+                       // console.log(dateText);
                         scope.$apply(function () {
                             ngModel.$setViewValue(dateText);
                         });
