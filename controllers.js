@@ -3,7 +3,6 @@ app.controller("TodoCtrl", function ($scope, todoStorage, $anchorScroll) {
   $scope.today = new Date().toLocaleDateString();
   $scope.loadingState = false;
   $scope.todos;
-  $scope.percentage;
 
   //다시보기
   //todo 데이터 받아오기
@@ -13,24 +12,24 @@ app.controller("TodoCtrl", function ($scope, todoStorage, $anchorScroll) {
       $scope.$apply(function () {
         $scope.todos = res;
         $scope.loadingState = true;
-        $scope.percentage = function (todos) {
-          let completedCount = 0;
-          let todosLength = todos.length;
-          let percentage = 0;
-
-          if (todosLength != 0) {
-            angular.forEach(todos, function (todo) {
-              if (todo.completed) { completedCount++ }
-            })
-            percentage = Math.ceil(completedCount / todosLength * 100);
-          }
-          // console.trace('digest trace')
-          // console.time('digest time')
-          return percentage;
-        }
+      // console.trace('digest trace')
+      // console.time('digest time')
       });
     })
   })()
+
+  $scope.percentage = function (todos) {
+    let completedCount = 0;
+    let todosLength = todos.length;
+
+    if (todosLength != 0) {
+      angular.forEach(todos, function (todo) {
+        if (todo.completed) { completedCount++ }
+      })
+      percentage = Math.ceil(completedCount / todosLength * 100);
+    }
+    return percentage;
+  }
 
   //투두 추가
   $scope.formData = {};

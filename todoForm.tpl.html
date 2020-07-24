@@ -1,5 +1,5 @@
 <form name="todoForm" class="mt-5"
-  ng-submit="add(formData.newTodoCategory, formData.newTodoTitle, newTodoDate, formData.newColor)">
+  ng-submit="add(formData.newTodoCategory, formData.newTodoTitle, today, formData.newColor)">
   <div class="row my-auto">
     <div class="col-6 align-items-center my-auto">
       <label for="text" class="mr-sm-2">카테고리:</label>
@@ -17,7 +17,7 @@
 
       <!--카테고리 직접입력-->
       <div ng-show="createCategory">
-        <input type="text" name="category" class="form-control mt-1 mb-1" ng-model="formData.newTodoCategory"
+        <input type="text" class="form-control mt-1 mb-1" ng-model="formData.newTodoCategory"
           placeholder="Enter category" maxlength="5" />
       </div>
 
@@ -25,15 +25,15 @@
       <div class="row mx-3 " ng-show="createCategory">
         <div class="form-check mx-2">
           <input type="radio" ng-model="formData.newColor" value="pink" class="form-check-input">
-          <span class="borderMarker" ng-style="{'background-color': 'pink'}">pink</span>
+          <span ng-style="{'background-color': 'pink'}">pink</span>
         </div>
         <div class="form-check mx-2">
           <input type="radio" ng-model="formData.newColor" value="skyblue" class="form-check-input">
-          <span class="borderMarker" ng-style="{'background-color': 'skyblue'}">skyblue</span>
+          <span ng-style="{'background-color': 'skyblue'}">skyblue</span>
         </div>
         <div class="form-check mx-2">
           <input type="radio" ng-model="formData.newColor" value="lightgreen" class="form-check-input">
-          <span class="borderMarker" ng-style="{'background-color': 'lightgreen'}">lightgreen</span>
+          <span ng-style="{'background-color': 'lightgreen'}">lightgreen</span>
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@
 
     <div class="col-6 align-items-center my-auto">
       <label for="text">기간:</label>
-      <input type="text" placeholder="{{today}}" date-picker-directive ng-model="newTodoDate"
+      <input type="text" placeholder="{{today}}" date-picker-directive ng-model="today"
         class="form-control mb-2 mr-sm-2" />
     </div>
   </div>
