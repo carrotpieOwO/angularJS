@@ -12,8 +12,8 @@ app.controller("TodoCtrl", function ($scope, todoStorage, $anchorScroll) {
       $scope.$apply(function () {
         $scope.todos = res;
         $scope.loadingState = true;
-      // console.trace('digest trace')
-      // console.time('digest time')
+        // console.trace('digest trace')
+        // console.time('digest time')
       });
     })
   })()
@@ -73,6 +73,24 @@ app.controller("TodoCtrl", function ($scope, todoStorage, $anchorScroll) {
     return todo.closingDate >= $scope.today
   }
 
+
+  $scope.filterCategory = function (value) {
+    console.log(value)
+    if (value === 'all') {
+      $scope.categoryFilter = {}
+    } else {
+      $scope.categoryFilter = { category: value };
+    }
+  }
+
+  $scope.filterStatus = function (value) {
+    console.log(value)
+    if (value === 'all') {
+      $scope.statusFilter = {}
+    } else {
+      $scope.statusFilter = { completed: value }
+    }
+  }
 
   // 상단 이동 버튼
   $scope.gotoTop = function () {

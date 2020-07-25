@@ -1,0 +1,11 @@
+<div class="row justify-content-start">
+  <button class="btn btn-warning mx-1 my-1" ng-style="{background: todo.color}" ng-click="filterCategory(all)">
+    all
+  </button>
+  <div ng-repeat="todo in todos | unique:'category'">
+    <button class="btn btn-category mx-1 my-1" ng-style="{background: todo.color}"
+      ng-click="filterCategory(todo.category)">
+      {{todo.category}}
+    </button>
+  </div>
+</div>

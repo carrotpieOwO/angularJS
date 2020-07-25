@@ -12,14 +12,19 @@ app.directive('todoDate', function () {
 
 app.directive('todoItem', function () {
     return {
-        templateUrl: 'todoItem.tpl.html',
-
+        templateUrl: 'todoItem.tpl.html'
     }
 })
 
-app.directive('todoFilters', function () {
+app.directive('todoStatusFilters', function () {
     return {
-        templateUrl: 'todoFilters.tpl.html'
+        templateUrl: 'todoStatusFilters.tpl.html'
+    }
+})
+
+app.directive('todoCategoryFilters', function () {
+    return {
+        templateUrl: 'todoCategoryFilters.tpl.html'
     }
 })
 
@@ -29,8 +34,8 @@ app.directive('todoForm', function () {
     }
 })
 
-app.directive('todoToggle', function(){
-    return{
+app.directive('todoToggle', function () {
+    return {
         templateUrl: 'todoToggle.tpl.html'
     }
 })
@@ -45,7 +50,7 @@ app.directive('datePickerDirective', [
                     changeMonth: true,
                     changeYear: true,
                     onSelect: function (dateText) {
-                       // console.log(dateText);
+                        // console.log(dateText);
                         scope.$apply(function () {
                             ngModel.$setViewValue(dateText);
                         });

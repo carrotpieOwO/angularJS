@@ -68,29 +68,17 @@ body {
   width: 90px;
 }
 
-.borderMarker::after {
-  content: "";
-  position: absolute;
-  left: -0.1px;
-  right: -0.1px;
-  bottom: 0;
-  height: 100%;
-  transform: scaleY(0.3);
-  transition: transform 0.1s ease-in-out;
-  transform-origin: bottom;
-}
-
 /* 버튼설정들 */
 .btn-primary{
   background-color: #c06c84;
-  border-color: #c06c84;
+  border: #c06c84!important;
 }
 
 
 .btn-warning{
   background-color: #355c7d;
-  border: #355c7d;
-  color: #fff;
+  border: #355c7d!important;
+  color: #fff!important;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:visited, .btn-primary:active:focus, .btn-primary:active:hover, 
@@ -112,6 +100,18 @@ body {
   box-shadow: 10px 10px 0 0 rgba(0, 0, 0, 0.2);
 }
 
+.filter{
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  box-shadow: 10px 10px 0 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+}
+
+.btn-category{
+  background-color: hsl(222, 100%, 93%);
+}
+
 .btn-submit {
   display: flex;
   justify-content: center;
@@ -122,3 +122,4 @@ body {
   transform: translateX(-50%);
   z-index: 100;
 }
+

@@ -1,79 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="/favicon.png"/>
-    <script src="https://kit.fontawesome.com/a7d50d45b6.js" crossorigin="anonymous"></script>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="/favicon.png" />
+  <script src="https://kit.fontawesome.com/a7d50d45b6.js" crossorigin="anonymous"></script>
 
-    <script src="./app.js"></script>
-    <script src="./directive.js"></script>
-    <script src="./controllers.js"></script>
-    <script src="./services.js"></script>
+  <script src="./app.js"></script>
+  <script src="./directive.js"></script>
+  <script src="./controllers.js"></script>
+  <script src="./services.js"></script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
 
-    <meta charset="UTF-8" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-    <title>Todo!</title>
-  </head>
+  <meta charset="UTF-8" />
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <title>Todo!</title>
+</head>
 
-  <body ng-app="todo" ng-controller="TodoCtrl">
-    <div id="top" class="container">
-      <todo-title class="text-center"></todo-title>
-      
-      <div class="card list mb-5 mx-auto"> 
-        <todo-date></todo-date>
+<body ng-app="todo" ng-controller="TodoCtrl">
+  <div id="top" class="container">
+    <todo-title class="text-center"></todo-title>
 
-        <!--로딩중 화면-->
-        <div class="card-body mx-auto" ng-if="!loadingState">
-          <h3 class="text-center">불러오는 중...</h3>
-          <img src="/coding_cat.gif" width="700px"/>
-        </div>
+    <div class="card list mb-5 mx-auto">
+      <todo-date></todo-date>
 
-        <!--로딩완료 화면-->
-        <div class="card-body" ng-if="loadingState">
-          <!--입력폼 토글 버튼-->
-          <div class="row justify-content-center">
-            <todo-toggle></todo-toggle>
-          </div>
-          
-          <!--입력폼-->
-          <div class="card-text mt-5" ng-show="openForm">
-            <todo-form></todo-form>
-          </div>
-
-          <!--progressBar-->
-          <div class="progress mb-3 mt-3">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: {{percentage(todos|filter:hideClosingTodos)}}%"> 
-              {{percentage(todos|filter:hideClosingTodos)}} %
-            </div>
-          </div>
-
-          <!--필터버튼-->
-          <div class="ml-auto mb-5">
-            <todo-filters> </todo-filters>
-          </div>
-
-          <!--투두 리스트-->
-          <ul class="list-unstyled mx-auto">
-            <li class="list-item" ng-repeat="todo in todos | filter:statusFilter | filter:hideClosingTodos" >
-              <todo-item></todo-item>
-            </li>
-          </ul>
-        
-        </div>
+      <!--로딩중 화면-->
+      <div class="card-body mx-auto" ng-if="!loadingState">
+        <h3 class="text-center">불러오는 중...</h3>
+        <img src="/coding_cat.gif" width="700px" />
       </div>
-      <!--카드 끝-->
-      <!--상단 이동 버튼-->
-      <button ng-click="gotoTop()" class="btn btn-primary btn-top">Go to Top! &utrif;</button>
+
+      <!--로딩완료 화면-->
+      <div class="card-body" ng-if="loadingState">
+        <!--입력폼 토글 버튼-->
+        <div class="row justify-content-center">
+          <todo-toggle></todo-toggle>
+        </div>
+
+        <!--입력폼-->
+        <div class="card-text mt-5" ng-show="openForm">
+          <todo-form></todo-form>
+        </div>
+
+        <!--progressBar-->
+        <div class="progress mb-3 mt-3">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+            style="width: {{percentage(todos|filter:hideClosingTodos|filter:categoryFilter)}}%">
+            {{percentage(todos|filter:hideClosingTodos|filter:categoryFilter)}} %
+          </div>
+        </div>
+
+        <!--투두 리스트-->
+        <ul class="list-unstyled mx-auto">
+          <li class="list-item"
+            ng-repeat="todo in todos | filter:statusFilter | filter:categoryFilter | filter:hideClosingTodos">
+            <todo-item></todo-item>
+          </li>
+        </ul>
+
+      </div>
     </div>
-    <!--container-->
-  </body>
+    <!--카드 끝-->
+
+    <!--필터영역-->
+    <div class="card filter" ng-if="loadingState">
+      <div class="card-header row justify-content-between align-items-center mx-2">
+        <h3>Filter </h3>
+        <h5><i class="fas fa-sliders-h"></i></h5>
+      </div>
+      <div class="card-body">
+        <div class="mr-auto mb-3">
+          <todo-status-filters> </todo-status-filters>
+        </div>
+        <p>category:</p>
+        <todo-category-filters> </todo-category-filters>
+      </div>
+    </div>
+
+    <!--상단 이동 버튼-->
+    <button ng-click="gotoTop()" class="btn btn-primary btn-top">Go to Top! &utrif;</button>
+  </div>
+  <!--container-->
+</body>
+
 </html>
